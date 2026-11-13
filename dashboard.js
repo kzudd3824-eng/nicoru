@@ -31,7 +31,17 @@ function renderRow(c, rank) {
   li.querySelector('.text').textContent = c.body;
   const a = li.querySelector('.video');
   a.textContent = c.title;
-  if (c.videoId) a.href = watchUrl(c);
+  const thumb = li.querySelector('.thumb');
+  if (c.videoId) {
+    a.href = watchUrl(c);
+    thumb.href = watchUrl(c);
+  }
+  // 削除済み動画などでサムネが無い・読めない場合はプレースホルダー（背景色）のまま
+  const img = thumb.querySelector('img');
+  if (c.thumbnail) {
+    img.src = c.thumbnail;
+    img.onerror = () => img.removeAttribute('src');
+  }
   li.querySelector('.pos').textContent = formatPos(c.vpos);
   li.querySelector('.posted').textContent = `投稿 ${c.postedAt.slice(0, 10)}`;
   li.querySelector('.owner').hidden = !c.ownerNicoru;
