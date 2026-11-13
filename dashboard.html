@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ニコる記録帳</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="top">
+    <h1>ニコる記録帳</h1>
+    <div class="sync">
+      <span id="status" class="status"></span>
+      <button id="sync-btn" type="button">今すぐ更新</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button type="button" role="tab" data-view="monthly" aria-selected="true">月別（9ニコる以上）</button>
+    <button type="button" role="tab" data-view="ranking" aria-selected="false">ランキング</button>
+    <label class="toggle"><input id="hide-deleted" type="checkbox" checked> 削除済みを除く</label>
+  </nav>
+
+  <main>
+    <section id="monthly" class="view">
+      <div id="years" class="chips"></div>
+      <div id="months"></div>
+    </section>
+
+    <section id="ranking" class="view" hidden>
+      <div class="filters">
+        <input id="search" type="search" placeholder="コメント・動画タイトルで絞り込み">
+      </div>
+      <p id="rank-summary" class="muted"></p>
+      <ol id="rank-list" class="list"></ol>
+      <button id="more" type="button" class="more" hidden>さらに表示</button>
+    </section>
+
+    <p id="empty" class="empty" hidden>まだデータがありません。「今すぐ更新」を押してください（初回は 1〜2 分かかります）。</p>
+  </main>
+
+  <template id="row-tpl">
+    <li class="row">
+      <span class="count"></span>
+      <div class="body">
+        <p class="text"></p>
+        <p class="meta">
+          <a class="video" target="_blank" rel="noopener"></a>
+          <span class="pos"></span>
+          <span class="posted"></span>
+          <span class="badge owner" hidden>投稿者ニコる</span>
+          <span class="badge deleted" hidden>削除済み</span>
+        </p>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

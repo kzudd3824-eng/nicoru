@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "ニコる記録帳",
+  "version": "0.1.0",
+  "description": "ニコられた自分のコメントを月別・ランキングで記録する",
+  "permissions": ["storage", "unlimitedStorage", "alarms", "scripting"],
+  "host_permissions": ["https://nvapi.nicovideo.jp/*", "https://www.nicovideo.jp/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "ニコる記録帳を開く" }
+}
